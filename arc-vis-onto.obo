@@ -1,6 +1,6 @@
 format-version: 1.4
 data-version: 22.08
-ontology: dpvis
+ontology: dpvis ! We treat this as the implicit namespace if none is given
 remark: General comments for this file can go here
 
 
@@ -17,7 +17,71 @@ id: dpvis:Scatterplot
 name: Scatterplot
 def: Plot that shows 2D points that may be colored individually
 ! is_a: BubbleChart
+! NOTE Do we need the following relations explicitly?
+has_a: dpvis:ScatterplotInputs
+has_a: dpvis:ScatterplotOutputs
 
+! BEGIN Trial how the ontology can be extended towards a mapping to sth. like a plotting library
+
+[Term]
+id: dpvis:ScatterplotInputs
+name: Scatterplot Inputs
+def: Inputs of a [Scatterplot]
+! This includes "small" stuff like parameters and "large" stuff like dataset
+has_a: dpvis:ScalarsForX
+has_a: dpvis:ScalarsForY
+has_a: dpvis:ScalarsForColor
+has_a: dpvis:Colormap
+comment: We expect implementations to be able to deal with zero or one color
+has_a: dpvis:Radius
+
+[Term]
+id: dpvis:ScalarsForX
+name: Scalars for X
+def: Scalars that are intended to be mapped to x-coordinates
+is_a: Scalars
+
+[Term]
+id: dpvis:ScalarsForY
+name: Scalars for Y
+def: Scalars that are intended to be mapped to y-coordinates
+is_a: Scalars
+
+[Term]
+id: dpvis:ScalarsForColor
+name: Scalars for Color
+def: Scalars that are intended to be mapped to colors
+is_a: Scalars
+
+[Term]
+id: dpvis:Scalars
+name:  Scalars
+def: Finite set of scalars (real numbers)
+
+[Term]
+id: dpvis:Radius
+name: Radius
+def: Number that defines the size of a circle
+is_a: Scalar
+
+[Term]
+id: dpvis:Scalar
+name: Scalar
+def: Real number as in the mathematical sense
+! Should maybe be called Number or Real
+
+[Term]
+id: dpvis:ScatterplotOutputs
+name: Scatterplot Outputs
+def: Outputs of a [Scatterplot]
+has_a: dpvis:ColoredCircles
+
+[Term]
+id: dpvis:ColoredCircles
+name: Colored Circles
+! TODO Continue
+
+! END
 
 [Term]
 id: dpvis:Heatmap
