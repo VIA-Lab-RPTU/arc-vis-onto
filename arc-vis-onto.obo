@@ -1,5 +1,5 @@
 format-version: 1.4
-data-version: 22.09
+data-version: 220927.1
 ontology: dpvis
 default-relationship-id-prefix: dpvis
 remark: General comments for this file can go here
@@ -16,7 +16,7 @@ comment: "Edge (i.e. relation) type; the unintuitive name \"Typedef\" for histor
 id: dpvis:BubbleChart
 name: Bubble Chart
 def: "Plot that can show 4D data through disks of varying size and color"
-is_a: TwoDimVis
+is_a: dpvis:TwoDimVis
 comment: "Comment that is guaranteed to survive a load-save round-trip (contrary to the exclamation mark lines)"
 created_by: Christopher Kappe | ORCID: 0000-0003-4296-1734
 
@@ -26,19 +26,19 @@ created_by: Christopher Kappe | ORCID: 0000-0003-4296-1734
 id: dpvis:ScalarsForX
 name: Scalars for X
 def: "Scalars that are intended to be mapped to x-coordinates"
-is_a: Scalars
+is_a: dpvis:Scalars
 
 [Term]
 id: dpvis:ScalarsForY
 name: Scalars for Y
 def: "Scalars that are intended to be mapped to y-coordinates"
-is_a: Scalars
+is_a: dpvis:Scalars
 
 [Term]
 id: dpvis:ScalarsForColor
 name: Scalars for Color
 def: "Scalars that are intended to be mapped to colors"
-is_a: Scalars
+is_a: dpvis:Scalars
 
 [Term]
 id: dpvis:Scalars
@@ -49,7 +49,7 @@ def: "Finite set of scalars (real numbers)"
 id: dpvis:Radius
 name: Radius
 def: "Number that defines the size of a circle"
-is_a: Scalar
+is_a: dpvis:Scalar
 
 [Term]
 id: dpvis:Scalar
@@ -62,12 +62,12 @@ id: dpvis:ScatterplotInputs
 name: Scatterplot Inputs
 def: "Inputs of a [Scatterplot]"
 comment: This includes "small" stuff like parameters and "large" stuff like datasets
-has_a: dpvis:ScalarsForX
-has_a: dpvis:ScalarsForY
-has_a: dpvis:ScalarsForColor
-has_a: dpvis:Colormap
+relationship: has_a dpvis:ScalarsForX
+relationship: has_a dpvis:ScalarsForY
+relationship: has_a dpvis:ScalarsForColor
+relationship: has_a dpvis:Colormap
 comment: "We expect implementations to be able to deal with zero or one color"
-has_a: dpvis:Radius
+relationship: has_a dpvis:Radius
 
 [Term]
 id: dpvis:ColoredCircles
@@ -78,16 +78,16 @@ comment: TODO Continue
 id: dpvis:ScatterplotOutputs
 name: Scatterplot Outputs
 def: "Outputs of a [Scatterplot]"
-has_a: dpvis:ColoredCircles
+relationship: has_a dpvis:ColoredCircles
 
 [Term]
 id: dpvis:Scatterplot
 name: Scatterplot
 def: "Plot that shows 2D points that may be colored individually"
-is_a: BubbleChart
+is_a: dpvis:BubbleChart
 comment: NOTE Do we need the following relations explicitly?
-has_a: dpvis:ScatterplotInputs
-has_a: dpvis:ScatterplotOutputs
+relationship: has_a dpvis:ScatterplotInputs
+relationship: has_a dpvis:ScatterplotOutputs
 
 
 
@@ -95,13 +95,13 @@ has_a: dpvis:ScatterplotOutputs
 id: dpvis:Heatmap
 name: Heatmap
 def: "Matrix visualization to compare two sequences by coloring the fields e.g. w.r.t. some similarity"
-is_a: TwoDimVis
+is_a: dpvis:TwoDimVis
 
 [Term]
 id: dpvis:DotPlot
 name: Dot Plot
 def: "Matrix visualization to compare two (bio) sequences by drawing black dots in fields that match"
-is_a: Heatmap
+is_a: dpvis:Heatmap
 
 
 [Term]
