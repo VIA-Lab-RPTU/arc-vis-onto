@@ -1,7 +1,7 @@
 format-version: 1.4
 data-version: 22.09
 ontology: dpvis
-idspace: dpvis
+default-relationship-id-prefix: dpvis
 remark: General comments for this file can go here
 
 
@@ -20,28 +20,7 @@ is_a: TwoDimVis
 comment: "Comment that is guaranteed to survive a load-save round-trip (contrary to the exclamation mark lines)"
 created_by: Christopher Kappe | ORCID: 0000-0003-4296-1734
 
-[Term]
-id: dpvis:Scatterplot
-name: Scatterplot
-def: "Plot that shows 2D points that may be colored individually"
-is_a: BubbleChart
-comment: NOTE Do we need the following relations explicitly?
-dpvis:has_a: dpvis:ScatterplotInputs
-dpvis:has_a: dpvis:ScatterplotOutputs
 
-
-
-[Term]
-id: dpvis:ScatterplotInputs
-name: Scatterplot Inputs
-def: "Inputs of a [Scatterplot]"
-comment: This includes "small" stuff like parameters and "large" stuff like datasets
-dpvis:has_a: dpvis:ScalarsForX
-dpvis:has_a: dpvis:ScalarsForY
-dpvis:has_a: dpvis:ScalarsForColor
-dpvis:has_a: dpvis:Colormap
-comment: "We expect implementations to be able to deal with zero or one color"
-dpvis:has_a: dpvis:Radius
 
 [Term]
 id: dpvis:ScalarsForX
@@ -79,15 +58,36 @@ def: "Real number as in the mathematical sense"
 comment: Should maybe be called Number or Real
 
 [Term]
-id: dpvis:ScatterplotOutputs
-name: Scatterplot Outputs
-def: "Outputs of a [Scatterplot]"
-dpvis:has_a: dpvis:ColoredCircles
+id: dpvis:ScatterplotInputs
+name: Scatterplot Inputs
+def: "Inputs of a [Scatterplot]"
+comment: This includes "small" stuff like parameters and "large" stuff like datasets
+has_a: dpvis:ScalarsForX
+has_a: dpvis:ScalarsForY
+has_a: dpvis:ScalarsForColor
+has_a: dpvis:Colormap
+comment: "We expect implementations to be able to deal with zero or one color"
+has_a: dpvis:Radius
 
 [Term]
 id: dpvis:ColoredCircles
 name: Colored Circles
 comment: TODO Continue
+
+[Term]
+id: dpvis:ScatterplotOutputs
+name: Scatterplot Outputs
+def: "Outputs of a [Scatterplot]"
+has_a: dpvis:ColoredCircles
+
+[Term]
+id: dpvis:Scatterplot
+name: Scatterplot
+def: "Plot that shows 2D points that may be colored individually"
+is_a: BubbleChart
+comment: NOTE Do we need the following relations explicitly?
+has_a: dpvis:ScatterplotInputs
+has_a: dpvis:ScatterplotOutputs
 
 
 
