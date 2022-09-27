@@ -1,5 +1,5 @@
 format-version: 1.4
-data-version: 22.08
+data-version: 22.09
 ontology: dpvis ! We treat this as the implicit namespace if none is given
 remark: General comments for this file can go here
 
@@ -7,15 +7,15 @@ remark: General comments for this file can go here
 [Term]
 id: dpvis:BubbleChart
 name: Bubble Chart
-def: Plot that can show 4D data through disks of varying size and color
+def: "Plot that can show 4D data through disks of varying size and color"
 ! is_a: TwoDimVis
-comment: Comment that is guaranteed to survive a load-save round-trip (contrary to the exclamation mark lines)
+comment: "Comment that is guaranteed to survive a load-save round-trip (contrary to the exclamation mark lines)"
 created_by: Christopher Kappe | ORCID: 0000-0003-4296-1734
 
 [Term]
 id: dpvis:Scatterplot
 name: Scatterplot
-def: Plot that shows 2D points that may be colored individually
+def: "Plot that shows 2D points that may be colored individually"
 ! is_a: BubbleChart
 ! NOTE Do we need the following relations explicitly?
 has_a: dpvis:ScatterplotInputs
@@ -26,54 +26,54 @@ has_a: dpvis:ScatterplotOutputs
 [Term]
 id: dpvis:ScatterplotInputs
 name: Scatterplot Inputs
-def: Inputs of a [Scatterplot]
-! This includes "small" stuff like parameters and "large" stuff like dataset
+def: "Inputs of a [Scatterplot]"
+! This includes "small" stuff like parameters and "large" stuff like datasets
 has_a: dpvis:ScalarsForX
 has_a: dpvis:ScalarsForY
 has_a: dpvis:ScalarsForColor
 has_a: dpvis:Colormap
-comment: We expect implementations to be able to deal with zero or one color
+comment: "We expect implementations to be able to deal with zero or one color"
 has_a: dpvis:Radius
 
 [Term]
 id: dpvis:ScalarsForX
 name: Scalars for X
-def: Scalars that are intended to be mapped to x-coordinates
+def: "Scalars that are intended to be mapped to x-coordinates"
 is_a: Scalars
 
 [Term]
 id: dpvis:ScalarsForY
 name: Scalars for Y
-def: Scalars that are intended to be mapped to y-coordinates
+def: "Scalars that are intended to be mapped to y-coordinates"
 is_a: Scalars
 
 [Term]
 id: dpvis:ScalarsForColor
 name: Scalars for Color
-def: Scalars that are intended to be mapped to colors
+def: "Scalars that are intended to be mapped to colors"
 is_a: Scalars
 
 [Term]
 id: dpvis:Scalars
 name:  Scalars
-def: Finite set of scalars (real numbers)
+def: "Finite set of scalars (real numbers)"
 
 [Term]
 id: dpvis:Radius
 name: Radius
-def: Number that defines the size of a circle
+def: "Number that defines the size of a circle"
 is_a: Scalar
 
 [Term]
 id: dpvis:Scalar
 name: Scalar
-def: Real number as in the mathematical sense
+def: "Real number as in the mathematical sense"
 ! Should maybe be called Number or Real
 
 [Term]
 id: dpvis:ScatterplotOutputs
 name: Scatterplot Outputs
-def: Outputs of a [Scatterplot]
+def: "Outputs of a [Scatterplot]"
 has_a: dpvis:ColoredCircles
 
 [Term]
@@ -86,88 +86,88 @@ name: Colored Circles
 [Term]
 id: dpvis:Heatmap
 name: Heatmap
-def: Matrix visualization to compare two sequences by coloring the fields e.g. w.r.t. some similarity
+def: "Matrix visualization to compare two sequences by coloring the fields e.g. w.r.t. some similarity"
 ! is_a: TwoDimVis
 
 [Term]
 id: dpvis:DotPlot
 name: Dot Plot
-def: Matrix visualization to compare two (bio) sequences by drawing black dots in fields that match
+def: "Matrix visualization to compare two (bio) sequences by drawing black dots in fields that match"
 ! is_a: Heatmap
 
 
 [Term]
 id: dpvis:VertBarChart
 name: Vertical Bar Chart
-def: Chart that has a vertical bar for every (named) scalar variable
+def: "Chart that has a vertical bar for every (named) scalar variable"
 
 [Term]
 id: dpvis:HoriBarChart
 name: Horizontal Bar Chart
-def: Chart that has a horizontal bar for every (named) scalar variable
+def: "Chart that has a horizontal bar for every (named) scalar variable"
 
 [Term]
 id: dpvis:VarWiBarChart
 name: Variable-width Bar Chart
-def: Like a [VertBarChart] but takes 2D variables and the width of a bar represents the value in the second dimension
+def: "Like a [VertBarChart] but takes 2D variables and the width of a bar represents the value in the second dimension"
 
 [Term]
 id: dpvis:StackedBarChart
 name: Stacked Bar Chart
-def: Like a [VertBarChart] but the scalar variables depend on an additional dimension (typically a set of categories)
+def: "Like a [VertBarChart] but the scalar variables depend on an additional dimension (typically a set of categories)"
 
 [Term]
 id: dpvis:Stacked100BarChart
 name: Stacked 100% Bar Chart
-def: Like a [StackedBarChart] but every bar has the same height s.t. the proportions of the categories can easily be compared across the bars
+def: "Like a [StackedBarChart] but every bar has the same height s.t. the proportions of the categories can easily be compared across the bars"
 
 
 [Term]
 id: dpvis:LineChart
 name: Line Chart
-def: Chart that shows a line for one or more scalar variables that are defined on a continuous 1D domain
+def: "Chart that shows a line for one or more scalar variables that are defined on a continuous 1D domain"
 
 [Term]
 id: dpvis:StackedAreaChart
 name: Stacked Area Chart
-def: Similar to a [LineChart] but there are always at least two lines and their height is given by stacking and the area under the lines is filled accordingly
+def: "Similar to a [LineChart] but there are always at least two lines and their height is given by stacking and the area under the lines is filled accordingly"
 
 [Term]
 id: dpvis:Stacked100AreaChart
 name: Stacked 100% Area Chart
-def: Like a [StackedAreaChart] but the accumalated height at each sample is normalized to 100%
+def: "Like a [StackedAreaChart] but the accumalated height at each sample is normalized to 100%"
 
 [Term]
 id: dpvis:CircularAreaChart
 name: Circular Area Chart
-def: Similar to a [LineChart] but the area under the line is filled and the domain is mapped to 360° (and the chart drawn accordingly) with axes for the codomain repeated e.g. every 45°
+def: "Similar to a [LineChart] but the area under the line is filled and the domain is mapped to 360° (and the chart drawn accordingly) with axes for the codomain repeated e.g. every 45°"
 
 
 [Term]
 id: dpvis:BarHistogram
 name: Bar Histogram
-def: Show a univariate distribution by bars whose position and width corresponds to bins of the sample space and whose height corresponds to the data count there
+def: "Show a univariate distribution by bars whose position and width corresponds to bins of the sample space and whose height corresponds to the data count there"
 
 [Term]
 id: dpvis:LineHistogram
 name: Line Histogram
-def: Show a univariate distribution by a continuous line whose height is determined by the probability
+def: "Show a univariate distribution by a continuous line whose height is determined by the probability"
 
 
 [Term]
 id: dpvis:PieChart
 name: Pie Chart
-def: A circle whose sections (or slices) are represent a relative size
+def: "A circle whose sections (or slices) are represent a relative size"
 
 
 [Term]
 id: dpvis:Treemap
 name: Treemap
-def: Visualization of a tree data structure whose nodes are represented by nested rectangles whose area reflects some variable.
+def: "Visualization of a tree data structure whose nodes are represented by nested rectangles whose area reflects some variable."
 
 
 [Term]
 id: dpvis:WaterfallChart
 name: Waterfall Chart
-def: Similar to a [VertBarChart] where the x-axis represents time or categories and the bars start at the top or bottom of its predecessor, growing up or down depending on the sign of the depicted variable
-comment: Aka. flying bricks chart or Mario chart
+def: "Similar to a [VertBarChart] where the x-axis represents time or categories and the bars start at the top or bottom of its predecessor, growing up or down depending on the sign of the depicted variable
+comment: "Aka. flying bricks chart or Mario chart"
