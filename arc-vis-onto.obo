@@ -89,8 +89,6 @@ comment: NOTE Do we need the following relations explicitly?
 relationship: has_a dpvis:ScatterplotInputs
 relationship: has_a dpvis:ScatterplotOutputs
 
-
-
 [Term]
 id: dpvis:Heatmap
 name: Heatmap
@@ -179,3 +177,177 @@ id: dpvis:WaterfallChart
 name: Waterfall Chart
 def: "Similar to a [VertBarChart] where the x-axis represents time or categories and the bars start at the top or bottom of its predecessor, growing up or down depending on the sign of the depicted variable
 comment: "Aka. flying bricks chart or Mario chart"
+
+[Term]
+id: dpvis:Categories
+name: Categories
+def: "Discrete labels or types with no implicit ordering."
+comment: Examples: colors, nations.
+
+[Term]
+id: dpvis:Ordinals
+name: Ordinal data
+def: "Discrete data with an implicit ordering."
+comment: Examples: grades, ranking.
+
+[Term]
+id: dpvis:DensityPlot
+name: Density Plot
+def: "Plot that shows the distribution of a numeric variable."
+comment: TODO is_a DensityPlot?
+
+[Term]
+id: dpvis:DensityPlotInputs
+name: Density Plot Inputs
+def: "Inputs of a [DensityPlot]"
+comment: TODO depending on dimensionality more scalars are needed
+relationship: has_a dpvis:ScalarsForX
+relationship: has_a dpvis:ScalarsForY
+relationship: has_a dpvis:ScalarsForColor
+comment: "We expect implementations to be able to deal with zero or one color"
+
+[Term]
+id: dpvis:2dDensityPlot
+name: 2D Density Plot
+def: "Plot that shows the distribution of values of two numeric variables. It counts the number of observations by estimating them via e.g. a square or a kernel that is moved over the 2D space."
+is_a: dpvis:TwoDimVis
+comment: TODO is_a dpvis:DensityPlot?
+
+[Term]
+id: dpvis:2dDensityPlotInputs
+name: 2D Density Plot Inputs
+def: "Inputs of a [2dDensityPlot]"
+relationship: has_a dpvis:ScalarsForX
+relationship: has_a dpvis:ScalarsForY
+relationship: has_a dpvis:ScalarsForColor
+relationship: has_a dpvis:Colormap
+comment: "We expect implementations to be able to deal with zero or one color"
+
+[Term]
+id: dpvis:2dDensityPlotOutputs
+name: 2D Density Plot Outputs
+def: "Outputs of a [2dDensityPlot]"
+relationship: has_a dpvis:ScalarsForX
+relationship: has_a dpvis:ScalarsForY
+comment: "We expect implementations to be able to deal with zero or one color"
+comment: "TODO: depending on kernel different outputs?"
+
+[Term]
+id: dpvis:Violin
+name: Violin Plot
+def: "Plot that shows the distribution of a numerical variable for one or several groups. It is similar to a [BoxPlot], but additionally shows the probability density."
+is_a: dpvis:TwoDimVis
+comment: TODO is_a dpvis:DensityPlot? 
+
+[Term]
+id: dpvis:BoxPlot
+name: Box Plot
+def: "Plot that shows the distribution of a numerical variable for one or several groups. The distribution is partitioned in its quartiles."
+is_a: dpvis:TwoDimVis
+comment: TODO is_a dpvis:DensityPlot?
+
+[Term]
+id: dpvis:Quartiles
+name: Quartiles
+def: "A quantile that devides the number of data points into four parts of equal size. The data has to be ordered in ascending order before being partitioned."
+comment: TODO add relationships if there are any. Is only a definition so far.
+
+[Term]
+id: dpvis:Streamgraph
+name: Streamgraph
+def: "Similar to [StackedAreaChart] but displaced around a central axis and with rounded edges to give it an organic appearance."
+is_a: dpvis:TwoDimVis
+comment: TODO is_a: dpvis:StackedAreaChart ?
+
+[Term]
+id: dpvis:RidgelinePlot 
+name: Ridgeline plot 
+def: "Similar to [StackedAreaChart] but displaced around a central axis and with rounded edges to give it an organic appearance. Distributions can be visualized by [LineHistogram] or [DensityPlot] which are aligned on horizontal axis and slightly overlap one another."
+is_a: dpvis:TwoDimVis
+comment: TODO is_a: dpvis:StackedAreaChart ?
+synonym: Joyplot
+
+[Term]
+id: dpvis:Correlogram  
+name: Correlogram
+def: "Visualizes the pairwise relationship between two numeric variables of a matrix. The correlation of each pair can be visualized by a [Scatterplot] or a symbolic representation of its value, e.g. bubble. Options for the diagonal are [Histogram] or [DensityPlot]."
+is_a: dpvis:TwoDimVis
+comment: How to reference a list of possible options?
+
+[Term]
+id: dpvis:PCA  
+name: PCA
+def: "Visualizes the pairwise relationship between two numeric variables of a matrix. The correlation of each pair can be visualized by a [Scatterplot] or a symbolic representation of its value, e.g. bubble. Options for the diagonal are [Histogram] or [DensityPlot]."
+is_a: dpvis:TwoDimVis
+comment: TODO How to reference a list of possible options?
+
+[Term]
+id: dpvis:Dendogram  
+name: Dendogram
+def: "A tree that depicts data in a hierarchical structure. Datasets can be either hierarchical themselves or numeric data matrix to compute distances between the data points (clustering)."
+is_a: dpvis:TwoDimVis
+comment: TODO How to correctly reference clustering?
+
+[Term]
+id: dpvis:Lollipop  
+name: Lollipop
+def: "Is a special kind of [BarChart], where instead of the bar we have a line and a dot."
+is_a: dpvis:TwoDimVis
+
+[Term]
+id: dpvis:Wordcloud  
+name: Wordcloud
+def: "Generates an image with words where the size or color enocdes the importance of each word. Allows to quickly perceive the most prominent terms."
+is_a: dpvis:TwoDimVis
+
+[Term]
+id: dpvis:Doughnut  
+name: Doughnut
+def: "Basically a [PieChart] with a hole inside. The sections of the Doughnut represent the relative size of their value."
+is_a: dpvis:TwoDimVis
+
+[Term]
+id: dpvis:CirclePacking  
+name: Circle Packing
+def: "Like a [Treemap] but with circles as areas. A circle represents a node and subnodes are the circles that are contained in it. Such Circle Packing depicts hierarchical structures, like the [Treemap] or [Dendogram]."
+is_a: dpvis:TwoDimVis
+
+[Term]
+id: dpvis:Venn  
+name: Venn Diagram
+def: "Shows logical relationships between different groups. Groups are represented by circles which size represent the importance of the respective group. Intersection of two circles and the size of the intersection represent how much the two groups intersect with one another."
+is_a: dpvis:TwoDimVis
+synonym: primary diagram
+synonym: set diagram
+synonym: logic diagram
+
+[Term]
+id: dpvis:Sunburst  
+name: Sunburst
+def: "Basically a [PieChart] or [Doughnut] with multiple levels to depict hierarchies."
+is_a: dpvis:TwoDimVis
+synonym: multi-level pie chart
+synonym: Radial Treemap
+
+[Term]
+id: dpvis:ParallelCoordinates  
+name: Parallel Coordinates
+def: "Comparison of data points through their variables. Vertical axis represent numeric variables and can have different scales. Each data point is plotted as a line that connects the values on each axis."
+is_a: dpvis:TwoDimVis
+comment: Like a [SpiderChart], but with cartesian coordinates.
+
+[Term]
+id: dpvis:SpiderChart  
+name: Spider Chart
+def: "Comparison of data points through their variables. Each axis represents a numeric variable and the axis are joint in the center of the plot. Each data point is plotted as a line that connects the values on each axis."
+is_a: dpvis:TwoDimVis
+comment: Like [ParallelCoordinates], but with circular layout.
+synonym: Web chart
+synonym: Radar chart
+
+[Term]
+id: dpvis:SankeyDiagram
+name: Sankey Diagram
+def: "Representation of flows over links. The width of a flow represents its importance."
+is_a: dpvis:TwoDimVis
+comment: Alluvial diagram is a sub category. TODO: term for alluvial diagram or delete comment.
