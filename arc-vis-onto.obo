@@ -72,6 +72,8 @@ relationship: has_a dpvis:Radius
 [Term]
 id: dpvis:ColoredCircles
 name: Colored Circles
+relationship: has_a dpvis:ScalarsForColor
+relationship: has_a dpvis:Colormap
 comment: TODO Continue
 
 [Term]
@@ -193,30 +195,14 @@ comment: Examples: grades, ranking.
 [Term]
 id: dpvis:DensityPlot
 name: Density Plot
-def: "Plot that shows the distribution of a numeric variable."
-comment: TODO is_a DensityPlot?
-
-[Term]
-id: dpvis:DensityPlotInputs
-name: Density Plot Inputs
-def: "Inputs of a [DensityPlot]"
-comment: TODO depending on dimensionality more scalars are needed
-relationship: has_a dpvis:ScalarsForX
-relationship: has_a dpvis:ScalarsForY
-relationship: has_a dpvis:ScalarsForColor
-comment: "We expect implementations to be able to deal with zero or one color"
-
-[Term]
-id: dpvis:2dDensityPlot
-name: 2D Density Plot
 def: "Plot that shows the distribution of values of two numeric variables. It counts the number of observations by estimating them via e.g. a square or a kernel that is moved over the 2D space."
 is_a: dpvis:TwoDimVis
 comment: TODO is_a dpvis:DensityPlot?
 
 [Term]
-id: dpvis:2dDensityPlotInputs
-name: 2D Density Plot Inputs
-def: "Inputs of a [2dDensityPlot]"
+id: dpvis:DensityPlotInputs
+name: Density Plot Inputs
+def: "Inputs of a [DensityPlot]"
 relationship: has_a dpvis:ScalarsForX
 relationship: has_a dpvis:ScalarsForY
 relationship: has_a dpvis:ScalarsForColor
@@ -224,9 +210,9 @@ relationship: has_a dpvis:Colormap
 comment: "We expect implementations to be able to deal with zero or one color"
 
 [Term]
-id: dpvis:2dDensityPlotOutputs
-name: 2D Density Plot Outputs
-def: "Outputs of a [2dDensityPlot]"
+id: dpvis:DensityPlotOutputs
+name: Density Plot Outputs
+def: "Outputs of a [DensityPlot]"
 relationship: has_a dpvis:ScalarsForX
 relationship: has_a dpvis:ScalarsForY
 comment: "We expect implementations to be able to deal with zero or one color"
@@ -265,7 +251,7 @@ name: Ridgeline plot
 def: "Similar to [StackedAreaChart] but displaced around a central axis and with rounded edges to give it an organic appearance. Distributions can be visualized by [LineHistogram] or [DensityPlot] which are aligned on horizontal axis and slightly overlap one another."
 is_a: dpvis:TwoDimVis
 comment: TODO is_a: dpvis:StackedAreaChart ?
-synonym: Joyplot
+synonym: "Joyplot" []
 
 [Term]
 id: dpvis:Correlogram  
@@ -317,17 +303,17 @@ id: dpvis:Venn
 name: Venn Diagram
 def: "Shows logical relationships between different groups. Groups are represented by circles which size represent the importance of the respective group. Intersection of two circles and the size of the intersection represent how much the two groups intersect with one another."
 is_a: dpvis:TwoDimVis
-synonym: primary diagram
-synonym: set diagram
-synonym: logic diagram
+synonym: "primary diagram" []
+synonym: "set diagram" []
+synonym: "logic diagram" []
 
 [Term]
 id: dpvis:Sunburst  
 name: Sunburst
 def: "Basically a [PieChart] or [Doughnut] with multiple levels to depict hierarchies."
 is_a: dpvis:TwoDimVis
-synonym: multi-level pie chart
-synonym: Radial Treemap
+synonym: "multi-level pie chart" []
+synonym: "Radial Treemap" []
 
 [Term]
 id: dpvis:ParallelCoordinates  
@@ -340,14 +326,44 @@ comment: Like a [SpiderChart], but with cartesian coordinates.
 id: dpvis:SpiderChart  
 name: Spider Chart
 def: "Comparison of data points through their variables. Each axis represents a numeric variable and the axis are joint in the center of the plot. Each data point is plotted as a line that connects the values on each axis."
-is_a: dpvis:TwoDimVis
+is_a: dpvis:Graph
 comment: Like [ParallelCoordinates], but with circular layout.
-synonym: Web chart
-synonym: Radar chart
+synonym: "Web chart" []
+synonym: "Radar chart" []
 
 [Term]
 id: dpvis:SankeyDiagram
 name: Sankey Diagram
 def: "Representation of flows over links. The width of a flow represents its importance."
 is_a: dpvis:TwoDimVis
-comment: Alluvial diagram is a sub category. TODO: term for alluvial diagram or delete comment.
+comment: "Alluvial diagram is a sub category. TODO: term for alluvial diagram or delete comment."
+
+[Term]
+id: dpvis:AxisChart
+name: Axis Chart
+def: "Representation of relationships between different values in a coordinate system."
+is_a: dpvis:TwoDimVis
+comment: TODO subtypes for axischarts
+
+[Term]
+id: dpvis:CartesianAxisChart
+name: Cartesian Axis Chart
+def: "Representation of relationships between different values in a cartesian coordinate system."
+is_a: dpvis:AxisChart
+relationship: has_a dpvis:Axis
+comment: TODO subtypes for axischarts
+
+[Term]
+id: dpvis:RadialAxisChart
+name: Radial Axis Chart
+def: "Representation of relationships between different values in a coordinate system."
+is_a: dpvis:AxisChart
+relationship: has_a dpvis:Axis
+comment: TODO subtypes for axischarts
+
+[Term]
+id: dpvis:Graph
+name: Graph
+def: "Representation of relationships between different entities through connections."
+is_a: dpvis:TwoDimVis	
+comment: TODO subtypes for graphs
