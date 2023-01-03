@@ -48,6 +48,11 @@ id: dpvis:Bandwidth
 name: The bandwidth of a [Kernelfunction] affects how “smooth” the resulting curve is. The lower the bandwidth the smaller is the considered neighborhood around an estimated point..
 
 [Term]
+id: dpvis:Bar
+name: Bar
+is_a: dpvis:Glyph ! Glyph
+
+[Term]
 id: dpvis:BarHistogram
 name: Bar Histogram
 def: "Show a univariate distribution by bars whose position and width corresponds to bins of the sample space and whose height corresponds to the data count there" []
@@ -71,6 +76,8 @@ relationship: has_a dpvis:ScalarsForY ! Scalars for Y
 id: dpvis:BarHistogramOutputs
 name: Outputs of a Bar Histogram.
 is_a: dpvis:Output ! Output
+relationship: has_a dpvis:Axis ! Axis
+relationship: has_a dpvis:Bar ! Bar
 
 [Term]
 id: dpvis:BoxPlot
@@ -128,10 +135,13 @@ is_a: dpvis:AxisChart ! Axis Chart
 relationship: has_a dpvis:Axis ! Axis
 
 [Term]
-id: dpvis:Categories
-name: Categories
+id: dpvis:Categorical
+name: Categorical data
 def: "Discrete labels or types with no implicit ordering." []
-comment: Examples: colors, nations.
+comment: "Examples: colors, nations. TODO valid math operations as relationship?"
+synonym: "Nominal" RELATED []
+is_a: dpvis:InputDataType ! Input Data Type
+
 
 [Term]
 id: dpvis:CirclePacking
@@ -166,6 +176,7 @@ is_a: dpvis:TwoDimVis
 id: dpvis:ColoredCircles
 name: Colored Circles
 comment: TODO Continue
+is_a: dpvis:Glyph ! Glyph
 relationship: has_a dpvis:Colormap ! Colormap
 relationship: has_a dpvis:Radius ! Radius
 relationship: has_a dpvis:ScalarsForColor ! Scalars for Color
@@ -195,6 +206,12 @@ id: dpvis:CorrelogramOutputs
 name: Correlogram Outputs
 is_a: dpvis:Output ! Output
 relationship: has_a dpvis:ColoredCircles ! Colored Circles
+
+[Term]
+id: dpvis:DataType
+name: Data Type
+def: "Term that specifies some sort of data type." []
+comment: "TODO def"
 
 [Term]
 id: dpvis:Dendogram
@@ -264,6 +281,7 @@ is_a: dpvis:TwoDimVis
 id: dpvis:Edge
 name: Edge
 def: "Connects one [Node] with another one in a [Graph]. Can either be directed or undirected." []
+is_a: dpvis:Line ! Line
 
 [Term]
 id: dpvis:Edges
@@ -271,13 +289,19 @@ name: Edges
 def: "A set of [Edge]s." []
 
 [Term]
+id: dpvis:Glyph
+name: Glyph
+def: "A marker to visually encode some sort of information in the output." []
+is_a: dpvis:Output ! Output
+
+[Term]
 id: dpvis:Graph
 name: Graph
 def: "Representation of relationships between different nodes through edges. Graphs can be directed or undirected." []
 comment: TODO subtypes for graphs
 is_a: dpvis:TwoDimVis
-relationship: has_a dpvis:Nodes
-relationship: has_a dpvis:Edges
+relationship: has_a dpvis:Edges ! Edges
+relationship: has_a dpvis:Nodes ! Nodes
 
 [Term]
 id: dpvis:Heatmap
@@ -297,8 +321,21 @@ name: Input
 def: "Input of a plot" []
 
 [Term]
+id: dpvis:InputDataType
+name: Input Data Type
+def: "The type of input data is relevant to choose a fitting visualization." []
+comment: "TODO def"
+
+[Term]
 id: dpvis:Kernelfunction
 name: Function that estimates the density of points within a region by weighting the distances.
+
+[Term]
+id: dpvis:Line
+name: Line
+is_a: dpvis:Glyph ! Glyph
+relationship: has_a dpvis:VertexEnd ! Vertex End
+relationship: has_a dpvis:VertexStart ! Vertex Start
 
 [Term]
 id: dpvis:LineChart
@@ -334,10 +371,11 @@ id: dpvis:NumberOfBins
 name: Integer specifying the amount of bins in which the data is to be seperated.
 
 [Term]
-id: dpvis:Ordinals
+id: dpvis:Ordinal
 name: Ordinal data
 def: "Discrete data with an implicit ordering." []
 comment: Examples: grades, ranking.
+is_a: dpvis:InputDataType ! Input Data Type
 
 [Term]
 id: dpvis:Output
@@ -363,6 +401,14 @@ id: dpvis:PieChart
 name: Pie Chart
 def: "A circle whose sections (or slices) are represent a relative size" []
 is_a: dpvis:TwoDimVis
+
+[Term]
+id: dpvis:Quantitative
+name: Quantitative data
+def: "Discrete or continuous data with an implicit ordering and existing distance." []
+comment: "Examples: height, temperature. TODO valid math operations as relationship?"
+synonym: "Real valued" RELATED []
+is_a: dpvis:InputDataType ! Input Data Type
 
 [Term]
 id: dpvis:Quartiles
@@ -530,6 +576,20 @@ id: dpvis:VertBarChart
 name: Vertical Bar Chart
 def: "Chart that has a vertical bar for every (named) scalar variable" []
 is_a: dpvis:AxisChart ! Axis Chart
+
+[Term]
+id: dpvis:VertexEnd
+name: Vertex End
+def: "The end vertex of a [Line]." []
+comment: "TODO is reference to line correct?"
+is_a: dpvis:Glyph ! Glyph
+
+[Term]
+id: dpvis:VertexStart
+name: Vertex Start
+def: "The start vertex of a [Line]." []
+comment: "TODO is reference to line correct?"
+is_a: dpvis:Glyph ! Glyph
 
 [Term]
 id: dpvis:Violin
